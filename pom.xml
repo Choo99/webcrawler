@@ -7,7 +7,7 @@
     <artifactId>udacity-webcrawler</artifactId>
     <version>1.0</version>
     <properties>
-        <maven.compiler.release>16</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -68,7 +68,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>16</release>
+                    <release>11</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -112,6 +112,7 @@
                             <name>testDataDir</name>
                             <value>${project.basedir}/src/test/data</value>
                         </property>
+
                         <property>
                             <name>crawlerImplementations</name>
                             <value>
