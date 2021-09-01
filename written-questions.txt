@@ -10,6 +10,8 @@ Q1. Run the web crawler using the configurations located at src/main/config/writ
     the ParallelWebCrawler.
 
     Why did the parser take more time when run with ParallelWebCrawler?
+    More work is done by parallelWebCrawler and thus PageParserImpl need more time
+    to parse more page deeper.
 
 
 Q2. Your manager ran your crawler on her old personal computer, using the configurations from Q1, and she notices that
@@ -17,16 +19,23 @@ Q2. Your manager ran your crawler on her old personal computer, using the config
 
     (a) Suggest one reason why the sequential web crawler was able to read more web pages than the parallel crawler.
         (Hint: Try setting "parallelism" to 1 in the JSON configs to simulate your manager's computer.)
+        Since the manager's personal computer is old, that computer may a single-core processor that will not take
+        any benefit from parallel crawler. This is because thread pool using more resource to run compare to
+        sequential crawler.
 
     (b) Suggest one scenario in which the parallel web crawler will almost certainly perform better than the sequential
         crawler. Why will it perform better?
+        Parallel web crawler will perform better than the sequential crawler on multi-core computer. More than one
+        thread can be use concurrently to complete more task.
 
 
 Q3. Analyze your method profiler through the lens of Aspect Oriented Programming, by answering the following questions:
 
     (a) What cross-cutting concern is being addressed by the com.udacity.webcrawler.profiler.Profiler class?
+    The cross-cutting concern is the annotation @Profiled when we need to measure how long of the method is running
 
     (b) What are the join points of the Profiler in the web crawler program?
+    Method with annotation @Profiled
 
 
 Q4. Identify three (3) different design patterns used in this project, and explain which interfaces, classes, and/or
@@ -34,5 +43,23 @@ Q4. Identify three (3) different design patterns used in this project, and expla
 
     For each pattern, name one thing about the pattern that you LIKED, and one thing you DISLIKED. If you did not like
     anything, you can name two things you disliked.
+
+    Firstly, builder pattern is using in class CrawlerConfiguration. This is very useful when
+    we need to build a constructor with many parameters. With builder pattern, we
+    do not need to know the sequence of the parameter. But, the implementation would
+    be so long and meaningless when we use it in a constructor with few parameters.
+
+    Second, Dependency Injection is using in package profiler. Injection would hep us
+    construct the dependencies automatically to help us write a clean code. But,
+    it would be very hard to recognize the corrective of the dependency.
+
+    Thirdly, Singleton Pattern is using at class WebCrawlerModule. This pattern is
+    useful in a class that must only have one instance. Constructor of the singleton
+    class will set to private to prevent from another instance can be created except
+    the first instance. However, this pattern should think wisely to implement it
+    because it would be many work to refactor the code when the class need multiple
+    instance.
+
+
 
 

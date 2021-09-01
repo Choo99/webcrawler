@@ -32,7 +32,6 @@ public final class ConfigurationLoader {
    * @return the loaded {@link CrawlerConfiguration}.
    */
   public CrawlerConfiguration load() {
-    // TODO: Fill in this method.
     try(Reader reader = Files.newBufferedReader(path)){
       return read(reader);
     }catch (IOException e){
